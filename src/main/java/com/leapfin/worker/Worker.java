@@ -1,6 +1,6 @@
-package com.leapfin.test.worker;
+package com.leapfin.worker;
 
-import com.leapfin.test.stream.Stream;
+import com.leapfin.stream.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

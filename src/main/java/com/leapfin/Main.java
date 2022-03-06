@@ -1,9 +1,9 @@
-package com.leapfin.test;
+package com.leapfin;
 
-import com.leapfin.test.stream.DataStream;
-import com.leapfin.test.worker.Worker;
-import com.leapfin.test.worker.WorkerResult;
-import com.leapfin.test.worker.WorkerStatus;
+import com.leapfin.stream.DataStream;
+import com.leapfin.worker.Worker;
+import com.leapfin.worker.WorkerResult;
+import com.leapfin.worker.WorkerStatus;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.slf4j.Logger;
@@ -26,7 +26,7 @@ public class Main {
         int numThreads = Integer.getInteger("numThreads", 10);
         String logLevel = System.getProperty("logLevel", "INFO");
 
-        Configurator.setLevel("com.leapfin.test", Level.toLevel(logLevel));
+        Configurator.setLevel("com.leapfin", Level.toLevel(logLevel));
 
         DataStream stream = new DataStream();
         CountDownLatch latch = new CountDownLatch(numThreads);

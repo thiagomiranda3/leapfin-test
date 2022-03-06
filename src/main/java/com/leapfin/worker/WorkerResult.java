@@ -1,4 +1,4 @@
-package com.leapfin.test.worker;
+package com.leapfin.worker;
 
 public final class WorkerResult {
     private final long elapsedTime;

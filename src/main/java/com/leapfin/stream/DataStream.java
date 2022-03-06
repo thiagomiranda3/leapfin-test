@@ -1,4 +1,4 @@
-package com.leapfin.test.stream;
+package com.leapfin.stream;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
