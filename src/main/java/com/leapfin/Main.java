@@ -22,7 +22,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executor = Executors.newCachedThreadPool();
 
-        long timeout = Long.getLong("timeout", 200);
+        long timeout = Long.getLong("timeout", 60000);
         int numThreads = Integer.getInteger("numThreads", 10);
         String logLevel = System.getProperty("logLevel", "INFO");
 
