@@ -33,16 +33,21 @@ public class Main {
         Configurator.setLevel("com.leapfin", Level.toLevel(logLevel));
 
         DataStream stream = new DataStream();
+
+        // Class that control the execution of all workers
         CountDownLatch latch = new CountDownLatch(numThreads);
 
+        // Here I create all workers
         List<CompletableFuture<WorkerResult>> futures = new ArrayList<>();
         for (int i = 0; i < numThreads; i++) {
             futures.add(CompletableFuture.supplyAsync(new Worker(stream, latch, i), executor));
         }
 
+        // Wait here until timeout or until execution of all threads finishes
         latch.await(timeout, TimeUnit.MILLISECONDS);
         executor.shutdownNow();
 
+        // After finish, get all future results and sort by elapsedTime
         List<WorkerResult> results = futures.stream()
                                             .map(CompletableFuture::join)
                                             .sorted(Comparator.comparing(WorkerResult::getElapsedTime).reversed())
