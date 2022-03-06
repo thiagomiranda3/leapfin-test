@@ -9,15 +9,14 @@ import org.apache.logging.log4j.core.config.Configurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 public class Main {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final Set<String> allowedLevels = new HashSet<>(Arrays.asList("ERROR", "WARN", "INFO", "DEBUG"));
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executor = Executors.newCachedThreadPool();
@@ -25,6 +24,11 @@ public class Main {
         long timeout = Long.getLong("timeout", 60000);
         int numThreads = Integer.getInteger("numThreads", 10);
         String logLevel = System.getProperty("logLevel", "INFO");
+
+        if (!allowedLevels.contains(logLevel)) {
+            logger.error("Log level not allowed");
+            return;
+        }
 
         Configurator.setLevel("com.leapfin", Level.toLevel(logLevel));
 
