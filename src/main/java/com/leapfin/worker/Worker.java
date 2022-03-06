@@ -44,7 +44,7 @@ public final class Worker implements Supplier<WorkerResult> {
         }
 
         logger.debug("Timeout while processing worker " + workerNumber);
-        return  new WorkerResult(0, 0, WorkerStatus.TIMEOUT);
+        return new WorkerResult(0, 0, WorkerStatus.TIMEOUT);
     }
 
     private long getElapsedTime() {
